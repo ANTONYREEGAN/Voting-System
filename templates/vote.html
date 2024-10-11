@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Election Voting System</h1>
+        <form action="/vote" method="POST">
+            <div class="input-group">
+                <label for="voter_id">Enter Your Voter ID:</label>
+                <input type="number" id="voter_id" name="voter_id" required>
+            </div>
+
+            <div class="input-group">
+                <label for="nominee">Choose a Nominee:</label>
+                <select id="nominee" name="nominee" required>
+                    <option value="1">{{ nominee1 }}</option>
+                    <option value="2">{{ nominee2 }}</option>
+                </select>
+            </div>
+
+            <button type="submit">Submit Vote</button>
+        </form>
+
+        {% if message %}
+            <div class="message">
+                <p>{{ message }}</p>
+            </div>
+        {% endif %}
+
+        {% if results %}
+            <div class="results">
+                <h2>Voting Results</h2>
+                <p>{{ nominee1 }}: {{ nm1_votes }} votes</p>
+                <p>{{ nominee2 }}: {{ nm2_votes }} votes</p>
+                <p>Winner: {{ winner }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
